@@ -1,0 +1,5 @@
+= link_to 'create contact', new_contact_path
+
+- if @clients
+  - @clients.each do |contact|
+    = link_to contact.name, contact
