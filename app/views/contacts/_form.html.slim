@@ -1,6 +1,12 @@
 = simple_form_for @contact, html: { class: 'col-md-7 col-sm-9' } do |form|
-  = form.input :name, required: true
-  = form.input :email
-  = form.input :birthday, as: :date, start_year: 1900, end_year: Date.today.year, \
-      order: [:day, :month, :year]
-  = form.input :description, as: :text
+  = form.input :sex, as: :radio_buttons, wrapper: :vertical_radio_and_checkboxes, \
+      collection: ['male', 'female'], label: 'This is a ...'
+  = form.input :name, required: true, label: 'What his name?', placeholder: 'First and Last name'
+  = form.input :email, label: 'What his email', placeholder: 'awesome@mail.com'
+  = form.input :birthday, label: 'His birthday?', order: [:day, :month, :year], \
+      as: :date, start_year: 1900, end_year: Date.today.year
+      
+  = form.input :description, as: :text, \
+      placeholder: 'Write a few lines about this contact, if you wish.'
+  
+  = form.submit 'Create!', class: 'btn btn-primary'

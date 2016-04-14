@@ -1,5 +1,28 @@
 = link_to 'create contact', new_contact_path
+br
+br
 
-- if @clients
-  - @clients.each do |contact|
-    = link_to contact.name, contact
+.row
+  - if @contacts
+    - @contacts.each do |contact|
+      .col-xs-12.col-sm-4
+        .panel.panel-primary
+          .panel-heading
+            .panel-title= contact.name
+          .panel-body
+            .p
+              strong Sex: 
+              = contact.sex
+            .p
+              strong Age: 
+              = contact.age
+            .p
+              strong Birthday: 
+              = contact.birthday.strftime('%e %B %Y')
+            .p
+              strong email 
+              a href="mailto:#{contact.email}"= contact.email
+          .panel-footer
+            .btn-group.btn-group-justified
+              = link_to 'more', contacts_path(contact), class: 'btn btn-default', role: 'button'
+              = link_to 'edit', contacts_path(contact), class: 'btn btn-default', role: 'button'
