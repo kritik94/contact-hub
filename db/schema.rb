@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160414124003) do
+ActiveRecord::Schema.define(version: 20160415122352) do
 
   create_table "accounts", force: :cascade do |t|
     t.integer  "user_id"
@@ -33,6 +33,26 @@ ActiveRecord::Schema.define(version: 20160414124003) do
   add_index "accounts", ["reset_password_token"], name: "index_accounts_on_reset_password_token", unique: true
   add_index "accounts", ["user_id"], name: "index_accounts_on_user_id"
 
+  create_table "addresses", force: :cascade do |t|
+    t.string  "country"
+    t.string  "city"
+    t.string  "street_address"
+    t.integer "owner_id"
+    t.string  "owner_type"
+  end
+
+  create_table "companies", force: :cascade do |t|
+    t.string   "name"
+    t.string   "email"
+    t.text     "description"
+    t.integer  "address_id"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.string   "phone_number"
+  end
+
+  add_index "companies", ["address_id"], name: "index_companies_on_address_id"
+
 # Could not dump table "contacts" because of following NoMethodError
 #   undefined method `[]' for nil:NilClass
 
@@ -41,6 +61,9 @@ ActiveRecord::Schema.define(version: 20160414124003) do
     t.date     "birthday"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "company_id"
   end
+
+  add_index "users", ["company_id"], name: "index_users_on_company_id"
 
 end

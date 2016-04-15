@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :companies
+
   resources :contacts
 
   devise_for :accounts, controllers: { registrations: 'accounts/registrations' }
