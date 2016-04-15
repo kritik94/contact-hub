@@ -17,34 +17,57 @@ html lang="en"
     /[if lt IE 9]
       = javascript_include_tag "//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.2/html5shiv.min.js"
 
-
   body
     - console
-    .navbar.navbar-default.navbar-static-top
-        .container
-          button.navbar-toggle type="button" data-toggle="collapse" data-target=".navbar-responsive-collapse"
-            span.icon-bar
-            span.icon-bar
-            span.icon-bar
-          / a.navbar-brand href="#"ContactHub
+    / .navbar.navbar-default.navbar-static-top
+    /     .container
+    /       button.navbar-toggle type="button" data-toggle="collapse" data-target=".navbar-responsive-collapse"
+    /         span.icon-bar
+    /         span.icon-bar
+    /         span.icon-bar
+    /       / a.navbar-brand href="#"ContactHub
+    /       = link_to 'ContactHub', root_path, class: 'navbar-brand'
+    /       .navbar-collapse.collapse.navbar-responsive-collapse
+    /         ul.nav.navbar-nav
+    /           li= link_to "contacts", contacts_path
+    /           li= link_to "Link 2", "/path2"
+    /           li= link_to "Link 3", "/path3"
+    /           - if current_account
+    /             li= link_to 'profile', user_path(current_account.user)
+    /             li= link_to 'sign out', destroy_account_session_path, method: :delete
+    /           - else
+    /             li= link_to 'sign in', new_account_session_path
+    /             li= link_to 'sign up', new_account_registration_path
+
+    / .container
+    /   .row
+    /     .col-md-10.col-md-offset-1.col-sm-12
+    /       = bootstrap_flash
+    /       = yield
+
+    /   footer
+    /     p &copy; Company 2016
+    nav.navbar.navbar-dark.bg-inverse
+      .container
+        div.col-xs-6.col-md-3
           = link_to 'ContactHub', root_path, class: 'navbar-brand'
-          .navbar-collapse.collapse.navbar-responsive-collapse
-            ul.nav.navbar-nav
-              li= link_to "contacts", contacts_path
-              li= link_to "Link 2", "/path2"
-              li= link_to "Link 3", "/path3"
-              - if current_account
-                li= link_to 'profile', user_path(current_account.user)
-                li= link_to 'sign out', destroy_account_session_path, method: :delete
-              - else
-                li= link_to 'sign in', new_account_session_path
-                li= link_to 'sign up', new_account_registration_path
+        div.nav.navbar-nav.col-xs-6.col-md-3.col-md-push-6
+          .pull-right
+            - if current_account
+              = link_to 'profile', user_path(current_account.user), class: 'nav-item nav-link'
+              = link_to 'sign out', destroy_account_session_path, method: :delete, class: 'nav-item nav-link'
+            - else
+              = link_to 'sign in', new_account_session_path, class: 'nav-item nav-link'
+              = link_to 'sign up', new_account_registration_path, class: 'nav-item nav-link'
+        div.nav.navbar-nav.col-xs-12.col-md-6.col-md-pull-3
+          .pull-right
+            = link_to 'Contacts', contacts_path, class: 'nav-item nav-link'
+            = link_to 'Contacts', contacts_path, class: 'nav-item nav-link'
+            = link_to 'Contacts', contacts_path, class: 'nav-item nav-link'
+
 
     .container
       .row
         .col-md-10.col-md-offset-1.col-sm-12
           = bootstrap_flash
           = yield
-
-      footer
-        p &copy; Company 2016
