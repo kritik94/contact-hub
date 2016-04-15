@@ -5,24 +5,28 @@ br
 .row
   - if @contacts
     - @contacts.each do |contact|
-      .col-xs-12.col-sm-4
-        .panel.panel-primary
-          .panel-heading
+      .col-xs-12.col-md-6.col-lg-4.col-xl-3
+        .card
+          .card-header
+            .pull-right
+              = link_to '', contact_path(contact), method: :delete , class: 'fa fa-remove', \
+                  data: { confirm: 'Are you sure?' }
             .panel-title= contact.name
-          .panel-body
-            .p
+            .clearfix
+          .card-block
+            .p.card-text
               strong Sex: 
               = contact.sex
-            .p
+            .p.card-text
               strong Age: 
               = contact.age
-            .p
+            .p.card-text
               strong Birthday: 
               = contact.birthday.strftime('%e %B %Y')
-            .p
+            .p.card-text
               strong email 
               a href="mailto:#{contact.email}"= contact.email
-          .panel-footer
-            .btn-group.btn-group-justified
-              = link_to 'more', contacts_path(contact), class: 'btn btn-default', role: 'button'
-              = link_to 'edit', contacts_path(contact), class: 'btn btn-default', role: 'button'
+          .card-footer.text-xs-center
+            .btn-group
+              = link_to 'more', contact_path(contact), class: 'btn btn-primary', role: 'button'
+              = link_to 'edit', contact_path(contact), class: 'btn btn-primary', role: 'button'

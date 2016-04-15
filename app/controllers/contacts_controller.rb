@@ -22,7 +22,12 @@ class ContactsController < ApplicationController
     end
   end
 
-  def delete
+  def destroy
+    puts "DELETE!!!!!"
+    @contact = Contact.find(params[:id])
+    if @contact.destroy
+      redirect_to contacts_path, notice: 'contact id deleted'
+    end
   end
 
   private
