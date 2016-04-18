@@ -1,7 +1,7 @@
 class DeviseCreateAccounts < ActiveRecord::Migration
   def change
     create_table(:accounts) do |t|
-      t.belongs_to :user, index: true, foreign_key: true
+      t.belongs_to :user, index: true
 
       ## Database authenticatable
       t.string :email,              null: false, default: ""

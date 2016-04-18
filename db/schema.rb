@@ -11,7 +11,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160415122352) do
+ActiveRecord::Schema.define(version: 20160415132353) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
 
   create_table "accounts", force: :cascade do |t|
     t.integer  "user_id"
@@ -29,9 +32,9 @@ ActiveRecord::Schema.define(version: 20160415122352) do
     t.datetime "updated_at",                          null: false
   end
 
-  add_index "accounts", ["email"], name: "index_accounts_on_email", unique: true
-  add_index "accounts", ["reset_password_token"], name: "index_accounts_on_reset_password_token", unique: true
-  add_index "accounts", ["user_id"], name: "index_accounts_on_user_id"
+  add_index "accounts", ["email"], name: "index_accounts_on_email", unique: true, using: :btree
+  add_index "accounts", ["reset_password_token"], name: "index_accounts_on_reset_password_token", unique: true, using: :btree
+  add_index "accounts", ["user_id"], name: "index_accounts_on_user_id", using: :btree
 
   create_table "addresses", force: :cascade do |t|
     t.string  "country"
@@ -51,19 +54,17 @@ ActiveRecord::Schema.define(version: 20160415122352) do
     t.string   "phone_number"
   end
 
-  add_index "companies", ["address_id"], name: "index_companies_on_address_id"
-
-# Could not dump table "contacts" because of following NoMethodError
-#   undefined method `[]' for nil:NilClass
+  add_index "companies", ["address_id"], name: "index_companies_on_address_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "name"
     t.date     "birthday"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
     t.integer  "company_id"
+    t.string   "phone_number"
   end
 
-  add_index "users", ["company_id"], name: "index_users_on_company_id"
+  add_index "users", ["company_id"], name: "index_users_on_company_id", using: :btree
 
 end
