@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'contacts_and_companies' => 'contacts_and_companies#index'
+
   resources :companies
 
   resources :contacts

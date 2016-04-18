@@ -1,0 +1,35 @@
+.col-xs-12.col-md-6.col-lg-4.col-xl-3
+  .card
+    .card-header
+      .row
+        .col-xs-10.panel-title
+          = contact.name
+          .pull-right
+            i.fa.fa-star
+            i.fa.fa-star
+            i.fa.fa-star
+            i.fa.fa-star
+            i.fa.fa-star
+        .col-xs-1
+          = link_to '', contact_path(contact), method: :delete , class: 'fa fa-remove', \
+              data: { confirm: 'Are you sure?' }
+    .card-block
+      p.card-text
+        strong Sex: 
+        = contact.sex
+      p.card-text
+        strong Age: 
+        = contact.age
+      p.card-text
+        strong Birthday: 
+        = contact.birthday.strftime('%e %B %Y')
+      p.card-text
+        strong email: 
+        a href="mailto:#{contact.email}"= contact.email
+      p.card-text
+        strong Phone: 
+        = contact.phone_number
+    .card-footer.text-xs-center
+      .btn-group
+        = link_to 'more', contact_path(contact), class: 'btn btn-primary', role: 'button'
+        = link_to 'edit', contact_path(contact), class: 'btn btn-primary', role: 'button'

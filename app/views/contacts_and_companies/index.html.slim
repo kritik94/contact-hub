@@ -1,0 +1,11 @@
+= render partial: 'partials/contacts_nav_bar', locals: { active: :all }
+br
+br
+
+.row
+  - if @contacts_and_companies
+    - @contacts_and_companies.each do |element|
+      - if element.class == Contact
+        = render partial: 'contacts/card', locals: { contact: element }
+      - elsif element.class == Company
+        = render partial: 'companies/card', locals: { company: element }

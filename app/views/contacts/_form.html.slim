@@ -1,4 +1,4 @@
-= simple_form_for @contact, html: { class: 'col-xl-8 col-xl-offset-2 col-lg-10 col-lg-offset-1'} do |form|
+= simple_form_for contact, html: { class: 'col-xl-8 col-xl-offset-2 col-lg-10 col-lg-offset-1'} do |form|
   = form.input :sex, as: :radio_buttons, wrapper: :vertical_radio_and_checkboxes, \
       collection: ['male', 'female'], label_method: ->(l) { ' ' + l }, label: 'This is a ...'
   = form.input :name, required: true, label: 'What his name?', placeholder: 'First and Last name'

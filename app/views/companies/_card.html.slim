@@ -1,0 +1,26 @@
+.col-xs-12.col-md-6.col-lg-4.col-xl-3
+  .card
+    .card-header
+      .row
+        .col-xs-10.panel-title
+          = company.name
+          .pull-right
+            i.fa.fa-star
+            i.fa.fa-star
+            i.fa.fa-star
+            i.fa.fa-star
+            i.fa.fa-star
+        .col-xs-1
+          = link_to '', company_path(company), method: :delete , class: 'fa fa-remove', \
+              data: { confirm: 'Are you sure?' }
+    .card-block
+      p.card-text
+        strong email: 
+        a href="mailto:#{company.email}"= company.email
+      p.card-text
+        strong Phone: 
+        = company.phone_number
+    .card-footer.text-xs-center
+      .btn-group
+        = link_to 'more', company_path(company), class: 'btn btn-primary', role: 'button'
+        = link_to 'edit', company_path(company), class: 'btn btn-primary', role: 'button'

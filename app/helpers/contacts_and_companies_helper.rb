@@ -1,0 +1,2 @@
+module ContactsAndCompaniesHelper
+end

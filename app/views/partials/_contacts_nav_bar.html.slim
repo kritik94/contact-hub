@@ -1,0 +1,21 @@
+.btn-group
+  - if :contacts == active
+    a.btn.btn-secondary.active href="#{contacts_path}" role='button' people
+  - else
+    a.btn.btn-secondary href="#{contacts_path}" role='button' people
+
+  a.btn.btn-secondary href="#{new_contact_path}" role='button'
+    i.fa.fa-plus
+.btn-group
+  - if :companies == active
+    a.btn.btn-secondary.active href="#{companies_path}" role='button' companies
+  - else
+    a.btn.btn-secondary href="#{companies_path}" role='button' companies
+
+  a.btn.btn-secondary href="#{new_company_path}" role='button'
+    i.fa.fa-plus
+.btn-group
+  - if :all == active
+    a.btn.btn-secondary.active href="#{contacts_and_companies_path}" role='button' all
+  - else
+    a.btn.btn-secondary href="#{contacts_and_companies_path}" role='button' all
