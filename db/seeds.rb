@@ -5,3 +5,27 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+a = Account.new
+a.email = 'nikita@mail.ru'
+a.password = 'supersecret'
+a.password_confirmation = a.password
+a.user = User.create
+a.save
+
+9.times do
+  c = Contact.new
+  c.name = Faker::Name.name
+  c.email = Faker::Internet.free_email
+  c.birthday = Faker::Time.between(60.years.ago, 18.year.ago).to_date
+  c.sex = %w(male, female).sample
+  c.phone_number = Faker::PhoneNumber.phone_number
+  c.address = Address.new
+  c.address.country = Faker::Address.country
+  c.address.city = Faker::Address.city
+  c.address.street_address = Faker::Address.street_address
+  c.save
+end
+
+a.user.contacts << Contact.all
+a.save

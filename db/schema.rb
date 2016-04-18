@@ -48,23 +48,35 @@ ActiveRecord::Schema.define(version: 20160415132353) do
     t.string   "name"
     t.string   "email"
     t.text     "description"
-    t.integer  "address_id"
+    t.integer  "user_id"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
     t.string   "phone_number"
   end
 
-  add_index "companies", ["address_id"], name: "index_companies_on_address_id", using: :btree
+  add_index "companies", ["user_id"], name: "index_companies_on_user_id", using: :btree
+
+  create_table "contacts", force: :cascade do |t|
+    t.integer  "user_id"
+    t.string   "name",         null: false
+    t.string   "email"
+    t.date     "birthday"
+    t.string   "phone"
+    t.text     "description"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.string   "sex"
+    t.string   "phone_number"
+  end
+
+  add_index "contacts", ["user_id"], name: "index_contacts_on_user_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "name"
     t.date     "birthday"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
-    t.integer  "company_id"
     t.string   "phone_number"
   end
-
-  add_index "users", ["company_id"], name: "index_users_on_company_id", using: :btree
 
 end
