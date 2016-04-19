@@ -1,5 +1,6 @@
 class Contact < ActiveRecord::Base
   belongs_to :user
+  belongs_to :company
   has_one :address, as: :owner
   
   validates :name, presence: true

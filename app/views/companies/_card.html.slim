@@ -1,16 +1,22 @@
-.col-xs-12.col-md-6.col-lg-4.col-xl-3
+ruby:
+  full |= false
+  description |= false
+
+  def grid_class(full)
+    if full
+      'col-xs-12'
+    else
+      'col-xs-12 col-md-6 col-lg-4 col-xl-3'
+    end
+  end
+
+div class="#{grid_class(full)}"
   .card
     .card-header
       .row
         .col-xs-10.panel-title
           = company.name
-          .pull-right
-            i.fa.fa-star
-            i.fa.fa-star
-            i.fa.fa-star
-            i.fa.fa-star
-            i.fa.fa-star
-        .col-xs-1
+        .col-xs-1.pull-right
           = link_to '', company_path(company), method: :delete , class: 'fa fa-remove', \
               data: { confirm: 'Are you sure?' }
     .card-block
@@ -20,7 +26,19 @@
       p.card-text
         strong Phone: 
         = company.phone_number
+      - if description
+        p.card-text
+          strong Description
+          p= company.description
+      - if full && !company.contacts.empty?
+        p.card-text
+          strong Employee
+          ul
+            - company.contacts.each do |contact|
+              li= link_to contact.name, contact
+          
     .card-footer.text-xs-center
       .btn-group
-        = link_to 'more', company_path(company), class: 'btn btn-primary', role: 'button'
-        = link_to 'edit', company_path(company), class: 'btn btn-primary', role: 'button'
+        - unless full
+          = link_to 'more', company_path(company), class: 'btn btn-primary', role: 'button'
+        = link_to 'edit', edit_company_path(company), class: 'btn btn-primary', role: 'button'

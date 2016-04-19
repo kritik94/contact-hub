@@ -1,0 +1,9 @@
+= simple_form_for company, html: { class: 'col-xl-8 col-xl-offset-2 col-lg-10 col-lg-offset-1'} do |form|
+  = form.input :name, required: true, label: 'What this name?', placeholder: 'Company name'
+  = form.input :email, as: :email, label: 'What this email', placeholder: 'awesome@company.com'
+  = form.input :phone_number, as: :tel, label: 'This phone number'
+      
+  = form.input :description, as: :text, \
+      placeholder: 'Write a few lines about this company, if you wish.'
+  
+  = form.submit 'Create!', class: 'btn btn-primary'
