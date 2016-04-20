@@ -13,9 +13,6 @@
 
 ActiveRecord::Schema.define(version: 20160419102729) do
 
-  # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
-
   create_table "accounts", force: :cascade do |t|
     t.integer  "user_id"
     t.string   "email",                  default: "", null: false
@@ -32,9 +29,9 @@ ActiveRecord::Schema.define(version: 20160419102729) do
     t.datetime "updated_at",                          null: false
   end
 
-  add_index "accounts", ["email"], name: "index_accounts_on_email", unique: true, using: :btree
-  add_index "accounts", ["reset_password_token"], name: "index_accounts_on_reset_password_token", unique: true, using: :btree
-  add_index "accounts", ["user_id"], name: "index_accounts_on_user_id", using: :btree
+  add_index "accounts", ["email"], name: "index_accounts_on_email", unique: true
+  add_index "accounts", ["reset_password_token"], name: "index_accounts_on_reset_password_token", unique: true
+  add_index "accounts", ["user_id"], name: "index_accounts_on_user_id"
 
   create_table "addresses", force: :cascade do |t|
     t.string  "country"
@@ -54,14 +51,13 @@ ActiveRecord::Schema.define(version: 20160419102729) do
     t.string   "phone_number"
   end
 
-  add_index "companies", ["user_id"], name: "index_companies_on_user_id", using: :btree
+  add_index "companies", ["user_id"], name: "index_companies_on_user_id"
 
   create_table "contacts", force: :cascade do |t|
     t.integer  "user_id"
     t.string   "name",         null: false
     t.string   "email"
     t.date     "birthday"
-    t.string   "phone"
     t.text     "description"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
@@ -70,7 +66,7 @@ ActiveRecord::Schema.define(version: 20160419102729) do
     t.integer  "company_id"
   end
 
-  add_index "contacts", ["user_id"], name: "index_contacts_on_user_id", using: :btree
+  add_index "contacts", ["user_id"], name: "index_contacts_on_user_id"
 
   create_table "users", force: :cascade do |t|
     t.string   "name"

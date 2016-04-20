@@ -18,20 +18,6 @@ a.user = User.create
 a.save
 
 5.times do
-  c = Contact.new
-  c.name = Faker::Name.name
-  c.email = Faker::Internet.free_email
-  c.birthday = Faker::Time.between(60.years.ago, 18.year.ago).to_date
-  c.sex = %w(male, female).sample
-  c.phone_number = Faker::PhoneNumber.phone_number
-  c.address = Address.new
-  c.address.country = Faker::Address.country
-  c.address.city = Faker::Address.city
-  c.address.street_address = Faker::Address.street_address
-  c.save
-end
-
-5.times do
   c = Company.new
   c.name = Faker::Company.name
   c.email = Faker::Internet.email
@@ -43,6 +29,22 @@ end
   c.save
 end
 
-a.user.contacts << Contact.all
 a.user.companies << Company.all
+
+10.times do
+  c = Contact.new
+  c.name = Faker::Name.name
+  c.email = Faker::Internet.free_email
+  c.birthday = Faker::Time.between(60.years.ago, 18.year.ago).to_date
+  c.sex = %w(male, female).sample
+  c.phone_number = Faker::PhoneNumber.phone_number
+  c.address = Address.new
+  c.address.country = Faker::Address.country
+  c.address.city = Faker::Address.city
+  c.address.street_address = Faker::Address.street_address
+  c.company = Company.find(Company.pluck(:id).sample)
+  c.save
+end
+
+a.user.contacts << Contact.all
 a.save

@@ -47,18 +47,19 @@ group :development do
   gem 'spring'
 end
 
+gem 'sqlite3'
 gem 'slim-rails'
 gem 'twitter-bootstrap-rails'
 gem 'devise'
 gem 'simple_form'
 gem 'bootstrap', '~> 4.0.0.alpha3'
 gem 'font-awesome-sass'
-gem 'pg', '0.18.4'
 
 source 'https://rails-assets.org' do
   gem 'rails-assets-tether', '>= 1.1.0'
 end
 
 group :production do
+  gem 'pg', '0.18.4'
   gem 'rails_12factor'
 end

@@ -1,6 +1,6 @@
 class CompaniesController < ApplicationController
   def index
-    @companies = current_account.user.companies
+    @companies = Company.current(current_account.user)
   end
 
   def show

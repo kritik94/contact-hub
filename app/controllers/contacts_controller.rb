@@ -1,6 +1,6 @@
 class ContactsController < ApplicationController
   def index
-    @contacts = current_account.user.contacts
+    @contacts = Contact.current(current_account.user)
   end
 
   def show
